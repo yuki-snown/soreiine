@@ -1,5 +1,4 @@
 /__pycache__
 /.vscode
-/images
-!/images/.keep
+/dataset
 setting.py
