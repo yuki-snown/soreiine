@@ -1,0 +1,7 @@
+efficientnet
+flask 
+flask_cors
+keras
+numpy
+Pillow
+tensorflow

@@ -1,13 +1,11 @@
 import os
 import numpy as np
 from PIL import Image
+from sklearn.model_selection import train_test_split
 from keras.utils import to_categorical
-from keras.layers import Input, Dense
-from keras.models import Model
 from keras.preprocessing import image
 from keras.callbacks import ModelCheckpoint
-from sklearn.model_selection import train_test_split
-from efficientnet.keras import EfficientNetB4
+from model import efficient_model
 
 def data_loader():
     root_data_path = "./dataset/"
@@ -25,20 +23,6 @@ def data_loader():
     y = to_categorical(labels, dtype='float32')
     X_train, X_test, y_train, y_test = train_test_split(x, y, train_size=0.8, random_state=10101, stratify=y)
     return X_train, X_test, y_train, y_test
-
-def efficient_model():
-    input_layer = Input(shape=(300, 300, 3))  # 最初の層
-    efficient_net = EfficientNetB4(
-        weights='noisy-student',  # imagenetでもよい 
-        include_top=False,  # 全結合層は自分で作成するので要らない
-        input_tensor = input_layer,  # 入力
-        pooling='max')
-    for layer in efficient_net.layers:  # 転移学習はしない
-        layer.trainable = True
-    x = efficient_net.output 
-    x = Dense(units=128, activation='relu')(x)
-    output = Dense(units=4, activation='softmax', name='class_output')(x)
-    return Model(inputs=input_layer, outputs=output)
 
 def main():
     X_train, X_test, y_train, y_test = data_loader()

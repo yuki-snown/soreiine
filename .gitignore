@@ -1,7 +1,7 @@
 /__pycache__
 /.vscode
 /dataset
-*.h5
-*.jpg
-*.zip
+/weights
 setting.py
+*.jpg
+*.h5
