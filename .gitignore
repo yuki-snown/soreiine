@@ -1,4 +1,7 @@
 /__pycache__
 /.vscode
 /dataset
+*.h5
+*.jpg
+*.zip
 setting.py

@@ -43,13 +43,14 @@ def efficient_model():
 def main():
     X_train, X_test, y_train, y_test = data_loader()
     net = efficient_model()
+    #net.load_weights("./weight.h5")
     net.compile(optimizer='rmsprop', 
                 loss={'class_output': 'categorical_crossentropy'},
                 metrics={'class_output': 'accuracy'})
     callbacks = [
-        ModelCheckpoint('./model_checkpoint', monitor='val_loss', verbose=1, save_best_only=True, mode='min')
+        ModelCheckpoint('checkpoint/ep{epoch:03d}-loss{accuracy:.3f}-val_loss{accuracy:.3f}.h5', monitor='val_loss', verbose=1, save_best_only=True, mode='min')
     ]
-    net.fit(X_train, y_train, epochs=10, batch_size=10, callbacks=callbacks, validation_data=(X_test, y_test))
+    net.fit(X_train, y_train, epochs=25, batch_size=17, callbacks=callbacks, validation_data=(X_test, y_test))
 
 if __name__ == "__main__":
     main()
