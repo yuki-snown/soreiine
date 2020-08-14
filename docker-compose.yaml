@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  eval:
+  micro:
     build: ./api
     ports:
       - "5000:5000"
@@ -9,7 +9,7 @@ services:
       - ".:/api"
     tty: true
     environment:
-      FLASK_APP: server.py
+      FLASK_APP: api/app.py
       FLASK_ENV: development
       TZ: Asia/Tokyo
     command: flask run --host 0.0.0.0 --port 5000

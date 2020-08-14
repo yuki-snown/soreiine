@@ -1,7 +1,8 @@
-efficientnet
-flask 
-flask_cors
-keras
-numpy
-Pillow
-tensorflow
+efficientnet==1.1.0
+flask==1.1.1
+flask_cors==3.0.8
+keras==2.2.4
+numpy==1.18.1
+Pillow==5.4.1
+scipy==1.1.0
+tensorflow==1.14.0
